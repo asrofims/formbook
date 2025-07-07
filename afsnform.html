@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AFSUNMEDIA BOOKING FORM</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #f0f0f0, #fafafa);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .form-container {
+      background: white;
+      padding: 2em;
+      border-radius: 16px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+      max-width: 420px;
+      width: 100%;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 1.5em;
+      color: #2c3e50;
+      font-weight: 600;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 0.5em;
+      font-weight: 500;
+      color: #333;
+    }
+
+    input[type="text"],
+    input[type="date"],
+    select {
+      display: block;
+      width: 100%;
+      padding: 0.8em;
+      margin-bottom: 1.2em;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      font-size: 1em;
+      background-color: #fff;
+      appearance: none;
+    }
+
+    button {
+      width: 100%;
+      padding: 0.9em;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 1.05em;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="form-container">
+    <h2>AFSUNMEDIA BOOKING FORM</h2>
+    <form id="contactForm">
+      <label for="nama">Nama:</label>
+      <input type="text" id="nama" name="nama" required>
+
+      <label for="tanggal">Tanggal Acara:</label>
+      <input type="date" id="tanggal" name="tanggal" required>
+
+      <label for="layanan">Jenis Layanan:</label>
+      <select id="layanan" name="layanan" required>
+        <option value="">Pilih layanan</option>
+        <option value="Foto">Foto</option>
+        <option value="Video">Video</option>
+        <option value="Foto/Video">Foto/Video</option>
+      </select>
+
+      <label for="acara">Acara:</label>
+      <select id="acara" name="acara" required>
+        <option value="">Pilih acara</option>
+        <option value="Graduation">Graduation</option>
+        <option value="Prewedding">Prewedding</option>
+        <option value="Engagement">Engagement</option>
+        <option value="Akad">Akad</option>
+        <option value="Wedding">Wedding</option>
+        <option value="Tedak Siten">Tedak Siten</option>
+        <option value="Lain-Lain">Lain-Lain</option>
+      </select>
+
+      <button type="submit">Booking</button>
+    </form>
+  </div>
+
+  <script>
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbzeKZ-oiwHmU8TsEyZ28qypiHazV0jRbMTjzay1OUn9IeLk-k8QzUZs6BWh9d17wA8B/exec'; // ← Ganti dengan Web App URL kamu
+    const form = document.getElementById('contactForm');
+
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      fetch(scriptURL, {
+        method: 'POST',
+        body: new FormData(form)
+      })
+      .then(response => {
+        alert('Booking berhasil dikirim!');
+        form.reset();
+      })
+      .catch(error => {
+        alert('Terjadi kesalahan: ' + error.message);
+      });
+    });
+  </script>
+
+</body>
+</html>
